@@ -1,5 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
+import type { Viewport } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import "./globals.css"
@@ -13,8 +14,13 @@ export const metadata: Metadata = {
   generator: "v0.app",
   keywords: ["e-commerce", "loja online", "pedidos", "brasil"],
   authors: [{ name: "E-commerce Team" }],
-  viewport: "width=device-width, initial-scale=1",
 }
+export const generateViewport = (): Viewport => {
+    return {
+        width: 'device-width',
+        initialScale: 1,
+    };
+};
 
 export default function RootLayout({
   children,

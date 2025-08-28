@@ -21,6 +21,5 @@ export function useProducts(params: Params = {}) {
             return productsPageSchema.parse(res.data)
         },
         keepPreviousData: true,
-        staleTime: 30_000,
     })
 }

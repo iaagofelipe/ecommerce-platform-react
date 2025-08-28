@@ -51,9 +51,9 @@ export default function HomePage() {
         size,
     })
 
-    const products = (data?.content ?? []).map(adaptToCardProduct)
-    const total = data?.totalElements ?? 0
-    const totalPages = data?.totalPages ?? 0
+    const products = (data?.content ?? []).map(adaptToCardProduct);
+    const total = data?.page.totalElements ?? 0;
+    const totalPages = data?.page.totalPages ?? 0;
 
     // categorias: vazio por enquanto (backend ainda não possui categoria)
     const categories: string[] = []

@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const productSchema = z.object({
     id: z.string().uuid(),
@@ -9,20 +9,20 @@ export const productSchema = z.object({
     imageUrl: z.string().url(),
     stockQty: z.number(),
     active: z.boolean(),
-    createdAt: z.string(),
-    updatedAt: z.string(),
-})
+    createdAt: z.string().datetime(),
+    updatedAt: z.string().datetime(),
+});
 
-export const pageSchema = <T extends z.ZodTypeAny>(item: T) =>
-    z.object({
-        content: z.array(item),
-        totalElements: z.number(),
-        totalPages: z.number(),
-        number: z.number(), // página atual (0-based)
-        size: z.number(),
-    })
+const pageInfoSchema = z.object({
+    size: z.number(),
+    number: z.number(),
+    totalElements: z.number(),
+    totalPages: z.number(),
+});
 
-export const productsPageSchema = pageSchema(productSchema)
+export const productsPageSchema = z.object({
+    content: z.array(productSchema),
+    page: pageInfoSchema,
+});
 
-export type ProductDto = z.infer<typeof productSchema>
-export type ProductsPageDto = z.infer<typeof productsPageSchema>
+export type ProductsPageDto = z.infer<typeof productsPageSchema>;
